@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { dbmscontext } from '../context/dbmscontext';
 import { useEffect } from 'react';
-import { decode } from 'jsonwebtoken';
+// import { decode } from 'jsonwebtoken';
 import axios from 'axios';
 const Signup = () => {
     const [username, setusername] = useState('');
