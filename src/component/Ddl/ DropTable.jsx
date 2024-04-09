@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { jwtDecode } from "jwt-decode";
 const DropTable = () => {
   const [tableName, setTableName] = useState('');
   const [message, setMessage] = useState('');
@@ -11,13 +11,26 @@ const DropTable = () => {
 
   const handleDropTable = async () => {
     try {
-      const response = await axios.delete(`http://localhost:3334/ddl/droptable/${tableName}`);
-      setMessage(response.data.message);
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                decodedToken: decodedToken
+            }
+        };
+
+        const response = await axios.delete(`http://localhost:3334/ddl/droptable/${tableName}`, config);
+        setMessage(response.data.message);
     } catch (error) {
-      setMessage('An error occurred while dropping the table');
-      console.error('Error dropping table:', error);
+        setMessage('An error occurred while dropping the table');
+        console.error('Error dropping table:', error);
     }
-  };
+};
+
 
   return (
     <div className="container mx-auto">

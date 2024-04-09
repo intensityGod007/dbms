@@ -10,6 +10,7 @@ const CreateTable = () => {
     const [constraints, setConstraints] = useState([]);
     const [ddlcomm, setDdlComm] = useState('');
     const [tablename, setTablename] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleAttributeChange = (e, index) => {
         const updatedAttributes = [...attributes];
@@ -49,33 +50,34 @@ const CreateTable = () => {
         let inputs = [];
         for (let i = 0; i < numAttributes; i++) {
             inputs.push(
-                <div key={i} className="mt-2">
-                    <label>Attribute</label>
+                <div key={i} className="mt-4">
+                    <label className="block text-gray-700">{`Attribute ${i + 1}`}</label>
                     <input
                         type="text"
                         placeholder={`Attribute ${i + 1}`}
                         value={attributes[i] || ''}
                         onChange={(e) => handleAttributeChange(e, i)}
-                        className="block w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-2"
+                        className="block w-full mt-1 p-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
-                    <label className="text-white">Data type</label>
+                    <label className="block mt-2 text-gray-700">Data type</label>
                     <input
                         type="text"
                         placeholder={`Data type for Attribute ${i + 1}`}
                         value={dataTypes[i] || ''}
                         onChange={(e) => handleDataTypeChange(e, i)}
-                        className="block w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-2"
+                        className="block w-full mt-1 p-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
-                    <label className="text-white">Constraint</label>
+                    <label className="block mt-2 text-gray-700">Constraint</label>
                     <input
                         type="text"
                         placeholder={`Constraint for Attribute ${i + 1}`}
                         value={constraints[i] || ''}
                         onChange={(e) => handleConstraintChange(e, i)}
-                        className="block w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-2"
+                        className="block w-full mt-1 p-2 rounded-md border border-gray-300 shadow-sm focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                     />
                 </div>
             );
+
         }
         return inputs;
     };
@@ -103,40 +105,45 @@ const CreateTable = () => {
 
             // Handle response from the server
             console.log('Server response:', response.data);
+            setMessage(response.data.message); // Set message from backend
             // You can handle the response as needed
         } catch (error) {
             // Handle error
-            console.error('Error creating table:', error);
+            
+            setMessage('Error creating table: ' + error.message);
         }
     };
 
     return (
-        <div className="mt-4 ms-4">
-            <label htmlFor="tableName" className="text-white">Table Name</label>
+        <div className="mt-4 ms-4 max-w-2xl mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <label htmlFor="tableName" className="">Table Name</label>
             <input
                 value={tablename}
                 onChange={(e) => setTablename(e.target.value)}
                 id="tableName"
                 type="text"
-                className="block w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-2 bg-white text-gray-900"
+                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
-            <h1 className="mt-2 text-white">Number of Attributes</h1>
+            <h1 className="mt-2">Number of Attributes</h1>
             <input
                 type="number"
                 value={numAttributes}
                 onChange={(e) => setNumAttributes(parseInt(e.target.value))}
                 className="block w-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mt-2 bg-white text-gray-900"
             />
-            <div className="mt-4">
+
+            <div className="mt-4 overflow-y-auto max-h-40">
                 {renderAttributeInputs()}
             </div>
             <button
-                className="mt-4 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded w-24"
+                className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 mt-4"
                 onClick={handleSubmit}
             >
-                createTable
+                Create Table
             </button>
+            {message && <p className="mt-4 text-sm text-gray-500">{message}</p>}
         </div>
+
     );
 };
 

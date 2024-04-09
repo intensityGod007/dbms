@@ -20,18 +20,18 @@ function App() {
     <Navbar/>
 
 
-  <div className='flex flex-row gap-1 justify-between'>
+  <div className='flex flex-row  justify-between'>
   
-  <div className='ms-4'>
+  <div className=''>
   <Side/>
   </div>
-  <div className='ms-8'>
+  <div className=''>
    <Dd/>
    </div>
 
 </div>
 <createtable/>
-<DDL/>
+
     <Routes>
      
 <Route path='/Login' element={<Login/>}/>

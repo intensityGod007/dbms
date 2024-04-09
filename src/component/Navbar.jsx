@@ -16,7 +16,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-gray-800 p-4">
+        <nav className=" fix bg-custom-purple p-4 fix">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="text-white font-bold">DBMS</div>
                 <div className="menu flex flex-row justify-between items-center rounded-md h-12">
