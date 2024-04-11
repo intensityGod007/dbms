@@ -1,6 +1,9 @@
+
 import React, { createContext, useEffect } from "react";
 
 import { useState } from "react";
+// import db from "../../../Backened/db";
+
 
 export const dbmscontext = createContext(null);
 
@@ -9,7 +12,9 @@ const DbmscontextProvider = (props) => {
    
     const [isLoggedIn, setIsLoggedIn] = useState(false); // State for isLoggedIn
     const [currentuser, setCurrentUser] = useState('Account'); // State for current user
+    // const[tabledata,settabledata]=useState('');
 
+    
   
 
     const loggined = (e) => {

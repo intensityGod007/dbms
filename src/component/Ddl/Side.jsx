@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+// import { useContext } from 'react';
 
+// import { dbmscontext } from '../context/dbmscontext';
+// import { jwtDecode } from "jwt-decode";
+// import { useState } from 'react';
+// import db from '../../../../Backened/db';
 const Side = () => {
+  // const {tableData}=useContext(dbmscontext)
+  // const[alltables,setalltables]=useState('');
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     const decodedToken =jwtDecode(token); 
+  //   console.log("Decoded Token:", decodedToken);
+  //   const userid=decodedToken.userId;
+  //   const tables=async()=>{
+  //   const a= await db.query('select *from table_creation_logs where user_id=$1',[userid])
+  //   }
+      
+  //   }
+  // }, []);
+
+
+
+
   return (
     <div className=" ms-4 mt-8 rounded-md h-full bg-custom-lightpink2 w-64 overflow-y-auto z-50">
   <nav id="hamburger" className="flex flex-col w-full">

@@ -24,9 +24,13 @@ const DropTable = () => {
         };
 
         const response = await axios.delete(`http://localhost:3334/ddl/droptable/${tableName}`, config);
+        console.log("response:",response);
         setMessage(response.data.message);
+        setTimeout(() => setMessage(''), 3000);
+        
     } catch (error) {
         setMessage('An error occurred while dropping the table');
+        setTimeout(() => setMessage(''), 3000);
         console.error('Error dropping table:', error);
     }
 };
@@ -48,7 +52,7 @@ const DropTable = () => {
       >
         Drop Table
       </button>
-      {message && <p className="text-red-500 mt-4">{message}</p>}
+      {message && <p className="text-black-500 mt-4">{message}</p>}
     </div>
   );
 };
