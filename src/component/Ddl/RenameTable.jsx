@@ -33,10 +33,10 @@ const RenameTableForm = ({ token, decodedToken }) => {
   
       const response = await axios.post(`http://localhost:3334/ddl/renametable/${currentTableName}/${newTableName}`,config);
       
-      console.log("response:", response);
+      // console.log("response:", response);
       setMessage(response.data.message);
       setTimeout(() => setMessage(''), 3000);
-      console.log('New Table Name:', newTableName);
+      // console.log('New Table Name:', newTableName);
       // Reset form fields
       setCurrentTableName('');
       setNewTableName('');
@@ -49,8 +49,8 @@ const RenameTableForm = ({ token, decodedToken }) => {
   
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Rename Table</h1>
+    <div className="max-w-md mx-auto shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <h1 className="text-3xl font-bold mb-4 text-center">Rename Table</h1>
       {message && <div className="text-black-600 mb-4">{message}</div>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

@@ -2,7 +2,7 @@
 import React, { createContext, useEffect } from "react";
 
 import { useState } from "react";
-// import db from "../../../Backened/db";
+
 
 
 export const dbmscontext = createContext(null);
@@ -12,10 +12,17 @@ const DbmscontextProvider = (props) => {
    
     const [isLoggedIn, setIsLoggedIn] = useState(false); // State for isLoggedIn
     const [currentuser, setCurrentUser] = useState('Account'); // State for current user
+    const [sqlcommand,setsqlcommand]=useState('ddl');
+    const[user_table,setuser_table]=useState([]);
     // const[tabledata,settabledata]=useState('');
-
     
-  
+    const currentUserTable=(e)=>{
+        setuser_table(e);
+    }
+    const setsqlfun = (sql) => {
+        setsqlcommand(sql);
+    };
+    
 
     const loggined = (e) => {
         setIsLoggedIn(e); // Function to set isLoggedIn to the value passed in
@@ -27,7 +34,7 @@ const DbmscontextProvider = (props) => {
 
    
 
-    const contextValue = { isLoggedIn, loggined, currentuser, currUser }; // Include loggined function
+    const contextValue = { isLoggedIn, loggined, currentuser, currUser ,setsqlfun,sqlcommand,user_table,currentUserTable}; // Include loggined function
     return (
         <dbmscontext.Provider value={contextValue}>
             {props.children}

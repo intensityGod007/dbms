@@ -9,41 +9,38 @@ import Signup from './component/Signup'
 import DDL from './component/Ddl/DDL'
 import Dd from './component/Ddl/Dd'
 import Side from './component/Ddl/Side'
-
+import Dm from './component/Dml/Dm'
+import HeroSection from './component/HeroSection'
+import { dbmscontext } from './context/dbmscontext'
+import { useContext } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isLoggedIn } = useContext(dbmscontext);
 
   return (
     <BrowserRouter>
-    
-    <Navbar/>
-
-
-  <div className='flex flex-row  justify-between'>
-  
-  <div className=''>
-  <Side/>
-  </div>
-  <div className=''>
-   <Dd/>
-   </div>
-
-</div>
-<createtable/>
-
-    <Routes>
+      
+      {/* <HeroSection /> */}
      
-<Route path='/Login' element={<Login/>}/>
-<Route path='/Signup'  element={<Signup/>}/>
-<Route path='/ddl' element={<Dd/>}/>
-{/* <Route path='/dml' element={<} */}
-{/* <Route path='/create' element={<Createtable/>}/> */}
+     
+      
+      {/* Use a conditional operator to render different components based on the login state */}
+      {isLoggedIn ? (
+        <Routes>
+          <Route path='/' element={<HeroSection />} />
+      
+        </Routes>
+      ) : (
+        <Routes>
+        <Route path='/' element={<Login />} />
 
-</Routes>
-{/* <Footer/> */}
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Signup' element={<Signup />} />
+        </Routes>
+      )}
 
-  </BrowserRouter>
+      {/* <Footer/> */}
+    </BrowserRouter>
   )
 }
 

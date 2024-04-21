@@ -12,9 +12,10 @@ const AlterTable = () => {
     setAlterations(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     // Here you can handle the form submission, for example, sending the data to a server
+    response=await axios.post('http://localhost:3334')
     console.log('Table Name:', tableName);
     console.log('Alterations:', alterations);
     // Reset form fields
@@ -65,3 +66,5 @@ const AlterTable = () => {
 };
 
 export default AlterTable;
+
+

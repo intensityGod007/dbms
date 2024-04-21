@@ -31,7 +31,7 @@ const DropTable = () => {
     } catch (error) {
         setMessage('An error occurred while dropping the table');
         setTimeout(() => setMessage(''), 3000);
-        console.error('Error dropping table:', error);
+        // console.error('Error dropping table:', error);
     }
 };
 
