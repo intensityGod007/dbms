@@ -20,24 +20,19 @@ function App() {
   return (
     <BrowserRouter>
       
-      {/* <HeroSection /> */}
+      <HeroSection />
      
      
       
       {/* Use a conditional operator to render different components based on the login state */}
-      {isLoggedIn ? (
-        <Routes>
-          <Route path='/' element={<HeroSection />} />
       
-        </Routes>
-      ) : (
         <Routes>
         <Route path='/' element={<Login />} />
 
           <Route path='/Login' element={<Login />} />
           <Route path='/Signup' element={<Signup />} />
         </Routes>
-      )}
+  
 
       {/* <Footer/> */}
     </BrowserRouter>
